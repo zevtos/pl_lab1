@@ -1,15 +1,14 @@
 # ninja log v6
-8	62	7531286120409923	CMakeFiles/my_oop_project.dir/src/image.c.obj	44e4f18906799248
-14	67	7531286120474979	CMakeFiles/my_oop_project.dir/src/transform.c.obj	42f01ee9f01a86f1
-4	69	7531286120369930	CMakeFiles/my_oop_project.dir/src/bmp.c.obj	25497b104040b876
-11	70	7531286120439927	CMakeFiles/my_oop_project.dir/src/main.c.obj	a637a36bc0e6da0b
-71	140	7531286121033661	my_oop_project.exe	5c329b50a0fec188
 18	201	7531899850970348	CMakeFiles/image_transform.dir/src/image.c.obj	916a2cad667da843
+71	140	7531286121033661	my_oop_project.exe	5c329b50a0fec188
 32	205	7531899851105066	CMakeFiles/image_transform.dir/src/transform.c.obj	5ef9e5cf84c07aff
-8	221	7531899850870313	CMakeFiles/image_transform.dir/src/bmp.c.obj	38b6984e1cc99767
-25	208	7531899851030371	CMakeFiles/image_transform.dir/src/main.c.obj	2971f85c3d202c9c
-221	388	7531899853002310	image_transform.exe	8a8fa55cfe97c364
-23	141	7531904066432621	CMakeFiles/image_transform.dir/src/main.c.obj	2971f85c3d202c9c
-17	160	7531904066372546	CMakeFiles/image_transform.dir/src/image_ioi.c.obj	9ab55914d9d046a8
 8	174	7531904066287554	CMakeFiles/image_transform.dir/src/bmp.c.obj	38b6984e1cc99767
+17	160	7531904066372546	CMakeFiles/image_transform.dir/src/image_ioi.c.obj	9ab55914d9d046a8
+23	141	7531904066432621	CMakeFiles/image_transform.dir/src/main.c.obj	2971f85c3d202c9c
 174	300	7531904067947416	image_transform.exe	bf796ed1a672afb7
+15	146	7531914268246585	CMakeFiles/image_transform.dir/src/image.c.obj	916a2cad667da843
+7	147	7531914268164146	CMakeFiles/image_transform.dir/src/bmp.c.obj	38b6984e1cc99767
+22	147	7531914268315315	CMakeFiles/image_transform.dir/src/image_ioi.c.obj	9ab55914d9d046a8
+40	160	7531914268496329	CMakeFiles/image_transform.dir/src/transform.c.obj	5ef9e5cf84c07aff
+34	160	7531914268430735	CMakeFiles/image_transform.dir/src/main.c.obj	2971f85c3d202c9c
+160	294	7531914269694503	image_transform.exe	bf796ed1a672afb7

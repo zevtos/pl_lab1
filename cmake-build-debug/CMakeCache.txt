@@ -84,7 +84,7 @@ CMAKE_FIND_PACKAGE_REDIRECTS_DIR:STATIC=C:/Users/zevtos/CLionProjects/pl_lab1_im
 CMAKE_GNUtoMS:BOOL=OFF
 
 //Install path prefix, prepended onto install directories.
-CMAKE_INSTALL_PREFIX:PATH=C:/Program Files (x86)/my_oop_project
+CMAKE_INSTALL_PREFIX:PATH=C:/Program Files (x86)/image_transform
 
 //Path to a program.
 CMAKE_LINKER:FILEPATH=C:/Users/zevtos/AppData/Local/Programs/CLion 2/bin/mingw/bin/ld.exe
@@ -221,15 +221,6 @@ image_transform_IS_TOP_LEVEL:STATIC=ON
 
 //Value Computed by CMake
 image_transform_SOURCE_DIR:STATIC=C:/Users/zevtos/CLionProjects/pl_lab1_image_transformer
-
-//Value Computed by CMake
-my_oop_project_BINARY_DIR:STATIC=C:/Users/zevtos/CLionProjects/pl_lab1_image_transformer/cmake-build-debug
-
-//Value Computed by CMake
-my_oop_project_IS_TOP_LEVEL:STATIC=ON
-
-//Value Computed by CMake
-my_oop_project_SOURCE_DIR:STATIC=C:/Users/zevtos/CLionProjects/pl_lab1_image_transformer
 
 
 ########################
