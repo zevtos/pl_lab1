@@ -49,40 +49,40 @@ cmake_ninja_workdir = C$:/Users/zevtos/CLionProjects/pl_lab1_image_transformer/c
 
 build cmake_object_order_depends_target_image_transform: phony || .
 
-build CMakeFiles/image_transform.dir/src/bmp.c.obj: C_COMPILER__image_transform_unscanned_Debug C$:/Users/zevtos/CLionProjects/pl_lab1_image_transformer/src/bmp.c || cmake_object_order_depends_target_image_transform
-  DEP_FILE = CMakeFiles\image_transform.dir\src\bmp.c.obj.d
+build CMakeFiles/image_transform.dir/solution/src/bmp.c.obj: C_COMPILER__image_transform_unscanned_Debug C$:/Users/zevtos/CLionProjects/pl_lab1_image_transformer/solution/src/bmp.c || cmake_object_order_depends_target_image_transform
+  DEP_FILE = CMakeFiles\image_transform.dir\solution\src\bmp.c.obj.d
   FLAGS = -g -std=gnu99 -fdiagnostics-color=always
-  INCLUDES = -IC:/Users/zevtos/CLionProjects/pl_lab1_image_transformer/include
+  INCLUDES = -IC:/Users/zevtos/CLionProjects/pl_lab1_image_transformer/solution/include
   OBJECT_DIR = CMakeFiles\image_transform.dir
-  OBJECT_FILE_DIR = CMakeFiles\image_transform.dir\src
+  OBJECT_FILE_DIR = CMakeFiles\image_transform.dir\solution\src
 
-build CMakeFiles/image_transform.dir/src/image.c.obj: C_COMPILER__image_transform_unscanned_Debug C$:/Users/zevtos/CLionProjects/pl_lab1_image_transformer/src/image.c || cmake_object_order_depends_target_image_transform
-  DEP_FILE = CMakeFiles\image_transform.dir\src\image.c.obj.d
+build CMakeFiles/image_transform.dir/solution/src/image.c.obj: C_COMPILER__image_transform_unscanned_Debug C$:/Users/zevtos/CLionProjects/pl_lab1_image_transformer/solution/src/image.c || cmake_object_order_depends_target_image_transform
+  DEP_FILE = CMakeFiles\image_transform.dir\solution\src\image.c.obj.d
   FLAGS = -g -std=gnu99 -fdiagnostics-color=always
-  INCLUDES = -IC:/Users/zevtos/CLionProjects/pl_lab1_image_transformer/include
+  INCLUDES = -IC:/Users/zevtos/CLionProjects/pl_lab1_image_transformer/solution/include
   OBJECT_DIR = CMakeFiles\image_transform.dir
-  OBJECT_FILE_DIR = CMakeFiles\image_transform.dir\src
+  OBJECT_FILE_DIR = CMakeFiles\image_transform.dir\solution\src
 
-build CMakeFiles/image_transform.dir/src/image_io.c.obj: C_COMPILER__image_transform_unscanned_Debug C$:/Users/zevtos/CLionProjects/pl_lab1_image_transformer/src/image_io.c || cmake_object_order_depends_target_image_transform
-  DEP_FILE = CMakeFiles\image_transform.dir\src\image_io.c.obj.d
+build CMakeFiles/image_transform.dir/solution/src/image_io.c.obj: C_COMPILER__image_transform_unscanned_Debug C$:/Users/zevtos/CLionProjects/pl_lab1_image_transformer/solution/src/image_io.c || cmake_object_order_depends_target_image_transform
+  DEP_FILE = CMakeFiles\image_transform.dir\solution\src\image_io.c.obj.d
   FLAGS = -g -std=gnu99 -fdiagnostics-color=always
-  INCLUDES = -IC:/Users/zevtos/CLionProjects/pl_lab1_image_transformer/include
+  INCLUDES = -IC:/Users/zevtos/CLionProjects/pl_lab1_image_transformer/solution/include
   OBJECT_DIR = CMakeFiles\image_transform.dir
-  OBJECT_FILE_DIR = CMakeFiles\image_transform.dir\src
+  OBJECT_FILE_DIR = CMakeFiles\image_transform.dir\solution\src
 
-build CMakeFiles/image_transform.dir/src/main.c.obj: C_COMPILER__image_transform_unscanned_Debug C$:/Users/zevtos/CLionProjects/pl_lab1_image_transformer/src/main.c || cmake_object_order_depends_target_image_transform
-  DEP_FILE = CMakeFiles\image_transform.dir\src\main.c.obj.d
+build CMakeFiles/image_transform.dir/solution/src/main.c.obj: C_COMPILER__image_transform_unscanned_Debug C$:/Users/zevtos/CLionProjects/pl_lab1_image_transformer/solution/src/main.c || cmake_object_order_depends_target_image_transform
+  DEP_FILE = CMakeFiles\image_transform.dir\solution\src\main.c.obj.d
   FLAGS = -g -std=gnu99 -fdiagnostics-color=always
-  INCLUDES = -IC:/Users/zevtos/CLionProjects/pl_lab1_image_transformer/include
+  INCLUDES = -IC:/Users/zevtos/CLionProjects/pl_lab1_image_transformer/solution/include
   OBJECT_DIR = CMakeFiles\image_transform.dir
-  OBJECT_FILE_DIR = CMakeFiles\image_transform.dir\src
+  OBJECT_FILE_DIR = CMakeFiles\image_transform.dir\solution\src
 
-build CMakeFiles/image_transform.dir/src/transform.c.obj: C_COMPILER__image_transform_unscanned_Debug C$:/Users/zevtos/CLionProjects/pl_lab1_image_transformer/src/transform.c || cmake_object_order_depends_target_image_transform
-  DEP_FILE = CMakeFiles\image_transform.dir\src\transform.c.obj.d
+build CMakeFiles/image_transform.dir/solution/src/transform.c.obj: C_COMPILER__image_transform_unscanned_Debug C$:/Users/zevtos/CLionProjects/pl_lab1_image_transformer/solution/src/transform.c || cmake_object_order_depends_target_image_transform
+  DEP_FILE = CMakeFiles\image_transform.dir\solution\src\transform.c.obj.d
   FLAGS = -g -std=gnu99 -fdiagnostics-color=always
-  INCLUDES = -IC:/Users/zevtos/CLionProjects/pl_lab1_image_transformer/include
+  INCLUDES = -IC:/Users/zevtos/CLionProjects/pl_lab1_image_transformer/solution/include
   OBJECT_DIR = CMakeFiles\image_transform.dir
-  OBJECT_FILE_DIR = CMakeFiles\image_transform.dir\src
+  OBJECT_FILE_DIR = CMakeFiles\image_transform.dir\solution\src
 
 
 # =============================================================================
@@ -92,7 +92,7 @@ build CMakeFiles/image_transform.dir/src/transform.c.obj: C_COMPILER__image_tran
 #############################################
 # Link the executable image_transform.exe
 
-build image_transform.exe: C_EXECUTABLE_LINKER__image_transform_Debug CMakeFiles/image_transform.dir/src/bmp.c.obj CMakeFiles/image_transform.dir/src/image.c.obj CMakeFiles/image_transform.dir/src/image_io.c.obj CMakeFiles/image_transform.dir/src/main.c.obj CMakeFiles/image_transform.dir/src/transform.c.obj
+build image_transform.exe: C_EXECUTABLE_LINKER__image_transform_Debug CMakeFiles/image_transform.dir/solution/src/bmp.c.obj CMakeFiles/image_transform.dir/solution/src/image.c.obj CMakeFiles/image_transform.dir/solution/src/image_io.c.obj CMakeFiles/image_transform.dir/solution/src/main.c.obj CMakeFiles/image_transform.dir/solution/src/transform.c.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\image_transform.dir

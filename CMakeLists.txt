@@ -3,10 +3,10 @@ project(image_transform C)
 
 set(CMAKE_C_STANDARD 99)
 
-include_directories(include)
+include_directories(solution/include)
 
-file(GLOB SOURCES "src/*.c")
+file(GLOB SOURCES "solution/src/*.c")
 
 add_executable(image_transform ${SOURCES}
-        include/image_io.h
-        src/image_io.c)
+        solution/include/image_io.h
+        solution/src/image_io.c)

@@ -3,7 +3,14 @@
 #include <stdlib.h>
 #include <string.h>
 
-// Функция чтения строки изображения BMP
+/**
+ * @brief Читает строку данных изображения BMP из файла.
+ *
+ * @param in Указатель на файл для чтения.
+ * @param row_data Буфер для хранения прочитанной строки.
+ * @param bmp_row_size Размер строки BMP в байтах.
+ * @return 0, если чтение прошло успешно, или -1 в случае ошибки.
+ */
 static int read_bmp_row(FILE *in, uint8_t *row_data, uint64_t bmp_row_size) {
     if (fread(row_data, 1, bmp_row_size, in) != bmp_row_size) {
         return -1;
@@ -11,7 +18,15 @@ static int read_bmp_row(FILE *in, uint8_t *row_data, uint64_t bmp_row_size) {
     return 0;
 }
 
-// Функция записи строки изображения BMP
+/**
+ * @brief Записывает строку данных изображения BMP в файл.
+ *
+ * @param out Указатель на файл для записи.
+ * @param row_data Буфер с данными строки для записи.
+ * @param row_size Размер строки пикселей без учета выравнивания.
+ * @param padding Количество байт выравнивания в конце строки.
+ * @return 0, если запись прошла успешно, или -1 в случае ошибки.
+ */
 static int write_bmp_row(FILE *out, const uint8_t *row_data, uint64_t row_size, uint64_t padding) {
     if (fwrite(row_data, 1, row_size, out) != row_size) {
         return -1;
@@ -23,7 +38,14 @@ static int write_bmp_row(FILE *out, const uint8_t *row_data, uint64_t row_size, 
     return 0;
 }
 
-enum read_status from_bmp(FILE *in, struct image *img) {
+/**
+ * @brief Читает изображение BMP из файла и загружает его в структуру `image`.
+ *
+ * @param in Указатель на файл для чтения.
+ * @param img Указатель на структуру `image`, в которую будут загружены данные изображения.
+ * @return Статус чтения (`READ_OK`, `READ_IO_ERROR`, `READ_INVALID_SIGNATURE`, и т.д.).
+ */
+enum read_status bmp_from_file(FILE *in, struct image *img) {
     if (!in || !img) return READ_INVALID_HEADER;
 
     struct bmp_header header;
@@ -83,16 +105,30 @@ enum read_status from_bmp(FILE *in, struct image *img) {
     return READ_OK;
 }
 
-enum write_status to_bmp(FILE *out, const struct image *img) {
-    if (!out || !img) return WRITE_ERROR;
+
+/**
+ * @brief Записывает изображение BMP в файл.
+ *
+ * @param out Указатель на файл для записи.
+ * @param img Указатель на структуру `image` с данными для записи.
+ * @return Статус записи (`WRITE_OK` или соответствующий статус ошибки).
+ */
+enum write_status bmp_to_file(FILE *out, const struct image *img) {
+    if (!out) {
+        return WRITE_FILE_POINTER_NULL;
+    }
+
+    if (!img) {
+        return WRITE_IMAGE_POINTER_NULL;
+    }
 
     struct bmp_header header = {0};
     header.bfType = BMP_SIGNATURE;
     header.bOffBits = sizeof(struct bmp_header);
-    header.biSize = 40;
+    header.biSize = BITMAPINFOHEADER_SIZE;
 
     if (img->width > UINT32_MAX || img->height > UINT32_MAX) {
-        return WRITE_ERROR; // Image dimensions are too large
+        return WRITE_IMAGE_TOO_LARGE;
     }
 
     header.biWidth = (uint32_t) img->width;
@@ -106,15 +142,17 @@ enum write_status to_bmp(FILE *out, const struct image *img) {
     header.biSizeImage = row_size * img->height;
     header.bfileSize = header.bOffBits + header.biSizeImage;
 
-    if (fwrite(&header, sizeof(struct bmp_header), 1, out) != 1)
-        return WRITE_ERROR;
+    if (fwrite(&header, sizeof(struct bmp_header), 1, out) != 1) {
+        return WRITE_HEADER_ERROR;
+    }
 
     for (uint64_t y = 0; y < img->height; y++) {
         uint64_t row = img->height - 1 - y;
         if (write_bmp_row(out, (const uint8_t *) image_pixel(img, 0, row), img->width * sizeof(struct pixel), padding) != 0) {
-            return WRITE_ERROR;
+            return WRITE_ROW_ERROR;
         }
     }
 
     return WRITE_OK;
 }
+
