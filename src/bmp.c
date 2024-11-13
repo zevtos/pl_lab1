@@ -40,8 +40,8 @@ enum read_status from_bmp(FILE *in, struct image *img) {
 
     int32_t width = header.biWidth;
     int32_t height = header.biHeight;
-    size_t abs_width = (size_t)(width < 0 ? -width : width);
-    size_t abs_height = (size_t)(height < 0 ? -height : height);
+    size_t abs_width = (size_t) (width < 0 ? -width : width);
+    size_t abs_height = (size_t) (height < 0 ? -height : height);
 
     // Проверка на переполнение при выделении памяти
     if (abs_width == 0 || abs_height == 0 || abs_height > SIZE_MAX / abs_width) {
@@ -60,7 +60,7 @@ enum read_status from_bmp(FILE *in, struct image *img) {
 
     int is_top_down = (height < 0);
 
-    if (fseek(in, (long)header.bOffBits, SEEK_SET) != 0) {
+    if (fseek(in, (long) header.bOffBits, SEEK_SET) != 0) {
         destroy_image(img);
         return READ_IO_ERROR;
     }
@@ -99,8 +99,8 @@ enum write_status to_bmp(FILE *out, const struct image *img) {
         return WRITE_ERROR; // Image dimensions are too large
     }
 
-    header.biWidth = (int32_t)img->width;
-    header.biHeight = (int32_t)img->height;
+    header.biWidth = (int32_t) img->width;
+    header.biHeight = (int32_t) img->height;
     header.biPlanes = 1;
     header.biBitCount = BMP_BPP;
     header.biCompression = 0;
@@ -115,7 +115,8 @@ enum write_status to_bmp(FILE *out, const struct image *img) {
 
     for (uint32_t y = 0; y < img->height; y++) {
         uint32_t row = img->height - 1 - y;
-        if (write_bmp_row(out, (const uint8_t *)image_pixel(img, 0, row), img->width * sizeof(struct pixel), padding) != 0) {
+        if (write_bmp_row(out, (const uint8_t *) image_pixel(img, 0, row), img->width * sizeof(struct pixel),
+                          padding) != 0) {
             return WRITE_ERROR;
         }
     }
