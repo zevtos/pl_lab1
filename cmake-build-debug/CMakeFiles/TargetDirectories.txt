@@ -1,0 +1,3 @@
+C:/Users/zevtos/CLionProjects/pl_lab1_image_transformer/cmake-build-debug/CMakeFiles/image_transform.dir
+C:/Users/zevtos/CLionProjects/pl_lab1_image_transformer/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/zevtos/CLionProjects/pl_lab1_image_transformer/cmake-build-debug/CMakeFiles/rebuild_cache.dir
