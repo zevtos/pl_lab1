@@ -3,6 +3,7 @@
 
 #include "image.h"
 
-struct image rotate_image(struct image *source);
+// Поворот изображения на 90 градусов
+struct image rotate_image_90(const struct image *source);
 
-#endif
+#endif // TRANSFORM_H

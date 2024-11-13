@@ -2,23 +2,23 @@
 #define IMAGE_H
 
 #include <stdint.h>
+#include <stddef.h>
 #include "pixel.h"
 
-#define IMAGE_PIXEL(img, x, y) ((img).data[(y) * (img).width + (x)])
-
+// Определение структуры изображения
 struct image {
     uint64_t width;
     uint64_t height;
     struct pixel *data;
 };
 
+// Создание изображения
 struct image create_image(uint64_t width, uint64_t height);
 
+// Уничтожение изображения
 void destroy_image(struct image *img);
 
-static inline struct pixel *image_pixel(struct image *img, size_t x, size_t y) {
-    return &img->data[y * img->width + x];
-}
+// Доступ к пикселям изображения (безопасная версия)
+struct pixel *image_pixel(const struct image *img, uint64_t x, uint64_t y);
 
-
-#endif
+#endif // IMAGE_H

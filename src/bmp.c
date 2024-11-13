@@ -3,10 +3,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define BMP_PADDING 4
-
 // Функция чтения строки изображения BMP
-static int read_bmp_row(FILE *in, uint8_t *row_data, size_t bmp_row_size) {
+static int read_bmp_row(FILE *in, uint8_t *row_data, uint64_t bmp_row_size) {
     if (fread(row_data, 1, bmp_row_size, in) != bmp_row_size) {
         return -1;
     }
@@ -14,7 +12,7 @@ static int read_bmp_row(FILE *in, uint8_t *row_data, size_t bmp_row_size) {
 }
 
 // Функция записи строки изображения BMP
-static int write_bmp_row(FILE *out, const uint8_t *row_data, size_t row_size, size_t padding) {
+static int write_bmp_row(FILE *out, const uint8_t *row_data, uint64_t row_size, uint64_t padding) {
     if (fwrite(row_data, 1, row_size, out) != row_size) {
         return -1;
     }
@@ -38,13 +36,13 @@ enum read_status from_bmp(FILE *in, struct image *img) {
     if (header.biBitCount != BMP_BPP)
         return READ_INVALID_BITS;
 
-    int32_t width = header.biWidth;
-    int32_t height = header.biHeight;
-    size_t abs_width = (size_t) (width < 0 ? -width : width);
-    size_t abs_height = (size_t) (height < 0 ? -height : height);
+    uint32_t width = header.biWidth;
+    uint32_t height = header.biHeight;
+    uint64_t abs_width = (uint64_t) width;
+    uint64_t abs_height = (uint64_t) height;
 
     // Проверка на переполнение при выделении памяти
-    if (abs_width == 0 || abs_height == 0 || abs_height > SIZE_MAX / abs_width) {
+    if (abs_width == 0 || abs_height == 0 || abs_height > UINT64_MAX / abs_width) {
         return READ_INVALID_HEADER;
     }
 
@@ -54,11 +52,9 @@ enum read_status from_bmp(FILE *in, struct image *img) {
     }
 
     // Вычисление размера строки с учетом выравнивания
-    size_t pixel_row_size = abs_width * sizeof(struct pixel);
-    size_t row_padding = (BMP_PADDING - (pixel_row_size % BMP_PADDING)) % BMP_PADDING;
-    size_t bmp_row_size = pixel_row_size + row_padding;
-
-    int is_top_down = (height < 0);
+    uint64_t pixel_row_size = abs_width * sizeof(struct pixel);
+    uint64_t row_padding = (BMP_PADDING - (pixel_row_size % BMP_PADDING)) % BMP_PADDING;
+    uint64_t bmp_row_size = pixel_row_size + row_padding;
 
     if (fseek(in, (long) header.bOffBits, SEEK_SET) != 0) {
         destroy_image(img);
@@ -71,8 +67,8 @@ enum read_status from_bmp(FILE *in, struct image *img) {
         return READ_MEMORY_ERROR;
     }
 
-    for (size_t y = 0; y < abs_height; y++) {
-        size_t row = is_top_down ? y : (abs_height - 1 - y);
+    for (uint64_t y = 0; y < abs_height; y++) {
+        uint64_t row = (abs_height - 1 - y);
         if (read_bmp_row(in, row_data, bmp_row_size) != 0) {
             free(row_data);
             destroy_image(img);
@@ -95,28 +91,27 @@ enum write_status to_bmp(FILE *out, const struct image *img) {
     header.bOffBits = sizeof(struct bmp_header);
     header.biSize = 40;
 
-    if (img->width > INT32_MAX || img->height > INT32_MAX) {
+    if (img->width > UINT32_MAX || img->height > UINT32_MAX) {
         return WRITE_ERROR; // Image dimensions are too large
     }
 
-    header.biWidth = (int32_t) img->width;
-    header.biHeight = (int32_t) img->height;
+    header.biWidth = (uint32_t) img->width;
+    header.biHeight = (uint32_t) img->height;
     header.biPlanes = 1;
     header.biBitCount = BMP_BPP;
     header.biCompression = 0;
 
-    uint32_t row_size = (img->width * sizeof(struct pixel) + BMP_PADDING - 1) & ~(BMP_PADDING - 1);
-    uint32_t padding = row_size - img->width * sizeof(struct pixel);
+    uint64_t row_size = (img->width * sizeof(struct pixel) + BMP_PADDING - 1) & ~(BMP_PADDING - 1);
+    uint64_t padding = row_size - img->width * sizeof(struct pixel);
     header.biSizeImage = row_size * img->height;
     header.bfileSize = header.bOffBits + header.biSizeImage;
 
     if (fwrite(&header, sizeof(struct bmp_header), 1, out) != 1)
         return WRITE_ERROR;
 
-    for (uint32_t y = 0; y < img->height; y++) {
-        uint32_t row = img->height - 1 - y;
-        if (write_bmp_row(out, (const uint8_t *) image_pixel(img, 0, row), img->width * sizeof(struct pixel),
-                          padding) != 0) {
+    for (uint64_t y = 0; y < img->height; y++) {
+        uint64_t row = img->height - 1 - y;
+        if (write_bmp_row(out, (const uint8_t *) image_pixel(img, 0, row), img->width * sizeof(struct pixel), padding) != 0) {
             return WRITE_ERROR;
         }
     }

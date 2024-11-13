@@ -9,4 +9,4 @@ file(GLOB SOURCES "src/*.c")
 
 add_executable(image_transform ${SOURCES}
         include/image_io.h
-        src/image_ioi.c)
+        src/image_io.c)
